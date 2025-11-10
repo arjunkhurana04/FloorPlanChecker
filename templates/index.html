@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Plan Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Floor Plan Checker</h1>
+            <p>Upload a floor plan image to get AI-powered feedback on accessibility, space efficiency, and best practices</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p class="upload-text">Drag and drop your floor plan image here</p>
+                        <p class="upload-subtext">or click to browse</p>
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                        <p class="file-info">Supported formats: JPG, PNG, GIF, BMP, WebP (max 16MB)</p>
+                    </div>
+                </div>
+
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <div class="preview-container">
+                        <img id="previewImage" src="" alt="Floor plan preview">
+                        <button class="remove-btn" id="removeBtn">×</button>
+                    </div>
+                    <button class="analyze-btn" id="analyzeBtn">Analyze Floor Plan</button>
+                </div>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing your floor plan...</p>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2>Analysis Results</h2>
+                <div class="results-layout">
+                    <div class="results-left">
+                        <div class="result-image-preview" id="resultImagePreview"></div>
+                        <div class="result-3d-preview" id="result3dPreview" style="display: none;">
+                            <div class="image-wrapper">
+                                <img id="result3dImage" src="" alt="3D isometric view" class="result-3d-image">
+                                <button class="download-btn" id="download3dBtn">Download 3D View</button>
+                            </div>
+                        </div>
+                        <button class="create-3d-btn" id="create3dBtn">Create 3D View</button>
+                        <button class="new-analysis-btn" id="newAnalysisBtn">Analyze Another Floor Plan</button>
+                    </div>
+                    <div class="results-right">
+                        <h3>Floor Plan Analysis</h3>
+                        <div class="feedback-content" id="feedbackContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-message" id="errorMessage"></div>
+                <button class="try-again-btn" id="tryAgainBtn">Try Again</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
